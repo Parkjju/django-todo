@@ -1,0 +1,20 @@
+<h1>Update Todo</h1>
+
+<form action="{%url 'update' todo.id%}" method="POST">
+  {% csrf_token %}
+  <p>Todo : <input type="text" name="title" value="{{todo.title}}" /></p>
+
+  {% if todo.complete == True %}
+  <p>
+    complete
+    <input type="checkbox" name="complete" checked />
+  </p>
+  {% else %}
+  <p>complete <input type="checkbox" name="complete" /></p>
+  {% endif %}
+  <button type="submit" class="btn btn-danger">Update</button>
+
+  <button type="button" class="btn btn-secondary" href="{% url 'list' %}">
+    <a href="{% url 'list' %}" style="color: white">Cancel</a>
+  </button>
+</form>
