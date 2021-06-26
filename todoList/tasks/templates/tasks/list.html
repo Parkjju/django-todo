@@ -1,6 +1,6 @@
 <!-- tasks/templates/tasks/list.html -->
 
-{% load crispy_forms_filters %}
+{% load crispy_forms_filters %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,6 +22,7 @@
         text-decoration: line-through;
       }
     </style>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   </head>
   <body>
     <div
@@ -61,7 +62,7 @@
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th>No.</th>
+              <th>Done</th>
               <th>Todo item</th>
               <th>Actions</th>
             </tr>
@@ -69,7 +70,40 @@
           {% for task in tasks %}
           <tbody>
             <tr>
-              <td>{{ task.id }}</td>
+              <td class="left_box">
+                <!-- {{ task.id }} -->
+                {% if task.complete == True %}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                {% else %}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                {% endif %}
+              </td>
               <td>
                 {% if task.complete == True %}
                 <span style="text-decoration: line-through">{{ task }}</span>
